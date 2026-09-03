@@ -93,4 +93,18 @@ class LLMAgent:
             except Exception as e:
                 log.warning("LLM unavailable: %s", e)
 
-        return f"我收到你说的：{text}", "neutral"
+        # 3) fully offline / unmatched: answer honestly and helpfully instead of
+        #    mechanically echoing the input back ("我收到你说的：…").
+        t = (text or "").strip()
+        if not t:
+            return "我在这儿，你说吧。", "neutral"
+        low = t.lower()
+        if any(k in low for k in ("你好", "您好", "hi", "hello", "嗨", "哈喽")):
+            return "你好呀！我能帮你打开软件、查时间、记东西，直接说就好。", "happy"
+        if any(k in low for k in ("谢谢", "感谢", "3q", "thank")):
+            return "不客气，随时叫我～", "happy"
+        if any(k in low for k in ("再见", "拜拜", "晚安", "bye")):
+            return "再见，有需要随时叫我！", "neutral"
+        if len(t) <= 4 and t.endswith("吗"):
+            return "可以的，你说的“" + t + "”我记住了。不过现在没联网也能做的，我能帮你开软件、报时间、复制粘贴、截图这些，试试看？", "neutral"
+        return "这句话我还不会，可以换个说法试试，比如“打开记事本”“现在几点”“复制这段话”。要是连了网，我也能陪你聊得更顺。", "neutral"
