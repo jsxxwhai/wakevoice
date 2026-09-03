@@ -12,7 +12,7 @@
 | 模块 | 职责 |
 |------|------|
 | core/config | 分层配置（默认值 < 用户配置 < 环境变量） |
-| core/llm | OpenAI 兼容 LLM 封装 + 情绪识别 |
+| core/llm | Chat Completions 兼容 LLM 封装 + 情绪识别 |
 | core/app | 顶层装配，懒加载各子系统 |
 | skills/base | 技能基类 + 注册表 + 路由 |
 | skills/* | 内置技能（打开应用、控制电脑） |
