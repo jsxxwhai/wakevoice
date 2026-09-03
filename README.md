@@ -16,6 +16,12 @@
 
 </div>
 
+
+<div align="center">
+
+*Speak to your computer and it gets things done — fully local, offline-first, no cloud.*
+
+</div>
 > [!NOTE]
 > 这个项目是**原创独立开发的桌面语音助手**，不包含、不模仿任何第三方品牌或受版权保护的内容。MIT 协议开源，可自由使用、修改与再分发。
 
@@ -60,7 +66,7 @@
 ![WakeVoice 对话演示（动画）](assets/demo.gif)
 
 ---
-## Download
+## Download（下载安装）
 
 This project ships as **two distributions** — pick whichever fits your machine:
 
@@ -71,7 +77,7 @@ This project ships as **two distributions** — pick whichever fits your machine
 
 > Both versions speak the same assistant (wake word “你好伙伴”), and both are fully open source. The portable EXE is built from this repository by `scripts/build_dist.py`.
 
-## Features
+## Features（功能特性）
 
 - 🎙️ **Custom wake word** — set any word in one line of config; no retraining.
 - 🗣️ **Emotional speech** — 9 built-in emotions, online neural voice or offline
@@ -84,7 +90,7 @@ This project ships as **two distributions** — pick whichever fits your machine
   endpoint when you want richer dialogue.
 - 📉 **Low memory** — everything is lazy-loaded; import-only footprint ~14 MiB.
 
-## Quickstart
+## Quickstart（快速开始）
 
 ```bash
 # 1. install
@@ -103,7 +109,7 @@ python main.py --text "hello"    # text mode (no microphone needed)
 `bootstrap.py` installs Python dependencies and downloads a small Chinese
 speech-recognition model (~42 MB) on first run.
 
-## Voice modes
+## Voice modes（语音模式）
 
 - **Wake word** — say your configured wake word, the assistant answers, then
   you speak your command.
@@ -114,7 +120,7 @@ speech-recognition model (~42 MB) on first run.
 - **Stop key** — press `Esc` (configurable) at any time to interrupt speech or
   abort listening. Can be disabled via `voice.stop_enabled: false`.
 
-## Safety
+## Safety（安全设计）
 
 Screen-affecting system operations (locking the screen, minimizing all
 windows) are **disabled by default**. To enable:
@@ -128,7 +134,7 @@ Runtime temp files (e.g. synthesized audio) are kept inside the project
 workspace (`runtime_tmp/`) rather than the OS temp drive, and are capped and
 cleaned automatically.
 
-## Configuration
+## Configuration（配置说明）
 
 Copy `config/config.example.yaml` to `config.yaml` and edit:
 
@@ -151,7 +157,7 @@ llm:
   base_url: null             # any Chat Completions-compatible endpoint
 ```
 
-## Built-in skills
+## Built-in skills（内置技能）
 
 | Skill | Example |
 |---|---|
@@ -173,7 +179,7 @@ llm:
 > Built-in site shortcuts target well-known sites by exact aliases and are
 > user-triggered only.
 
-## Plugins
+## Plugins（技能插件）
 
 Drop a `.py` file into `skills/` that defines `register_skills(registry)`:
 
@@ -187,7 +193,7 @@ def register_skills(registry):
         handler=lambda p, c: "你好呀！"))
 ```
 
-## Multi-agent
+## Multi-agent（多智能体）
 
 ```python
 from assistant.agents.hub import Agent, AgentHub, AgentContext
@@ -198,7 +204,7 @@ ctx = AgentContext()
 print(hub.dispatch("coder", "帮我写个快速排序", ctx))
 ```
 
-## Project layout
+## Project layout（项目结构）
 
 ```
 src/assistant/
@@ -213,7 +219,7 @@ src/assistant/
 └── cli.py       # command-line entry point
 ```
 
-## Roadmap
+## Roadmap（路线图）
 
 - [x] Custom wake word + multiple backends
 - [x] Emotional speech synthesis
@@ -225,7 +231,7 @@ src/assistant/
 - [ ] Wake-word training toolkit
 - [ ] Broader platform support (macOS/Linux polish)
 
-## Documentation
+## Documentation（文档）
 
 - [Architecture](docs/architecture.md)
 - [Extending](docs/extending.md)
@@ -233,6 +239,6 @@ src/assistant/
 - [Contributing](CONTRIBUTING.md)
 - [Security](SECURITY.md)
 
-## License
+## License（开源协议）
 
 [MIT](LICENSE) © WakeVoice Contributors
