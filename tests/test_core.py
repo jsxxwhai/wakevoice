@@ -6,10 +6,10 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
-from assistant.skills.base import SkillRegistry
+from assistant.core.config import Config
 from assistant.skills import apps as apps_skill
 from assistant.skills import control as control_skill
-from assistant.core.config import Config
+from assistant.skills.base import SkillRegistry
 
 
 def _registry() -> SkillRegistry:

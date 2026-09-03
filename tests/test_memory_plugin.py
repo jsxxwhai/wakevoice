@@ -72,8 +72,9 @@ def test_memory_is_truthy_when_empty():
 def test_all_manifests_are_json_serializable():
     """all_manifests must be JSON-serializable (compiled patterns -> strings)."""
     import json
-    from assistant.skills.base import SkillRegistry
+
     from assistant.skills import control as C
+    from assistant.skills.base import SkillRegistry
     reg = SkillRegistry()
     C.register_control_skills(reg)
     manifests = reg.all_manifests()
@@ -86,7 +87,7 @@ def test_all_manifests_are_json_serializable():
 
 
 def test_skill_registry_find_unregister():
-    from assistant.skills.base import SkillRegistry, Skill
+    from assistant.skills.base import Skill, SkillRegistry
     reg = SkillRegistry()
     reg.register(Skill(name="a", description="d", patterns=["aaa"], handler=lambda p, c: "ok"))
     assert reg.find("a") is not None
@@ -109,6 +110,7 @@ def test_memory_save_load(tmp_path):
 def test_screen_reader_backend_validation():
     """ScreenReader rejects unsupported backends on capture."""
     import pytest
+
     from assistant.screen.reader import ScreenReader
     r = ScreenReader(backend="bogus")
     with pytest.raises(ValueError):
@@ -158,9 +160,10 @@ def test_mcp_sse_parse_and_session():
 
 def test_rpc_http_non_json_body_raises_clean(monkeypatch):
     """A non-JSON HTTP response must raise MCPServerError, not ValueError."""
+    import requests
+
     from assistant.connectors.client import MCPServer
     from assistant.core.errors import MCPServerError
-    import requests
 
     class FakeResp:
         text = "<html>gateway error</html>"
@@ -184,8 +187,9 @@ def test_rpc_http_non_json_body_raises_clean(monkeypatch):
 
 def test_rpc_http_empty_body_returns_empty(monkeypatch):
     """An empty 200 response body yields {} rather than crashing."""
-    from assistant.connectors.client import MCPServer
     import requests
+
+    from assistant.connectors.client import MCPServer
 
     class FakeResp:
         text = ""
@@ -262,7 +266,7 @@ def test_create_wake_factory_keyword(monkeypatch):
     fake_vosk.KaldiRecognizer = _FakeRec
     monkeypatch.setitem(sys.modules, "vosk", fake_vosk)
 
-    from assistant.wake.keyword import create_wake, KeywordWake
+    from assistant.wake.keyword import KeywordWake, create_wake
 
     w = create_wake("你好伙伴", "unused-dir", 16000, 0.5, backend="keyword", model=object())
     assert isinstance(w, KeywordWake)

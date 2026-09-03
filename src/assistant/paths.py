@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Filesystem anchor helpers.
 
 The app ships two ways:

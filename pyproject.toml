@@ -39,7 +39,7 @@ dependencies = [
 [project.optional-dependencies]
 wake = ["openwakeword>=0.6.0"]
 llm = ["openai>=1.0"]
-dev = ["pytest>=7.0", "ruff>=0.1"]
+dev = ["pytest>=7.0", "ruff>=0.16.5,<0.17"]
 
 [project.scripts]
 openvoice = "assistant.cli:main"
@@ -60,3 +60,25 @@ packages = { find = { where = ["src"] } }
 
 [tool.setuptools.package-data]
 assistant = ["**/*.yaml", "**/*.yml", "**/*.json"]
+
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+# Stable, pragmatic rule set. New ruff releases keep adding stricter defaults
+# that break CI on existing code; pin the rules this project actually follows.
+select = ["E", "F", "W", "I", "UP", "B", "SIM", "PIE", "RUF"]
+ignore = [
+    "E501",     # long lines are fine; project uses 120 limit and long CN strings
+    "BLE001",   # blind except Exception is intentional fallback
+    "RUF012",   # mutable class attrs in test fakes acceptable
+    "RUF059",   # unpacked dummy vars in tests intentional
+    "RUF001",   # fullwidth punctuation in Chinese strings is intentional
+    "RUF002",   # fullwidth punctuation in docstrings is intentional
+    "RUF003",   # fullwidth punctuation in comments is intentional
+    "SIM103",   # explicit if/return reads clearer in tests
+    "SIM211",   # explicit False/True mapping reads clearer in tests
+    "PIE807",   # lambda wrappers in tests acceptable
+    "SIM105",   # try/except/pass is a clear, explicit fallback pattern
+]

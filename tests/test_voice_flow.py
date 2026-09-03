@@ -6,15 +6,15 @@ configuration helpers.
 """
 from __future__ import annotations
 
-import sys
 import json
+import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
 import numpy as np
 
-from assistant.stt.voice_input import VoiceInput, _CAPTURE_BLOCK
+from assistant.stt.voice_input import _CAPTURE_BLOCK, VoiceInput
 
 
 def _speech_block(amp=20000):
@@ -104,7 +104,7 @@ def test_hands_free_timeout_when_no_speech():
     # silence_blocks=4 but FakeStream never runs out; it keeps handing silence,
     # so the no-speech timeout needs ~ max(30, 4*5)=30 silent blocks.
     frames = []
-    vi, rec = _voice(frames, silence_blocks=30)
+    vi, _rec = _voice(frames, silence_blocks=30)
     fired = []
     out = vi.listen_hands_free(on_timeout=lambda: fired.append(True))
     assert out == ""
@@ -113,7 +113,7 @@ def test_hands_free_timeout_when_no_speech():
 
 def test_hands_free_stop_key_aborts():
     frames = [_speech_block()] * 2
-    vi, rec = _voice(frames, silence_blocks=4, stop_keys=["esc"])
+    vi, _rec = _voice(frames, silence_blocks=4, stop_keys=["esc"])
     class KB:
         def is_pressed(self, key):
             return True
@@ -154,9 +154,10 @@ def test_push_to_talk_returns_text(monkeypatch):
 
 def _bare_assistant(monkeypatch):
     """An Assistant instance that never touches audio/mic/network."""
-    from assistant.core.app import Assistant
-    import threading as _t
     import collections
+    import threading as _t
+
+    from assistant.core.app import Assistant
 
     a = Assistant.__new__(Assistant)
     from assistant.core.config import Config
@@ -258,7 +259,7 @@ def test_stop_listener_disabled_starts_nothing(monkeypatch):
     from assistant.core.app import Assistant
     a = Assistant()
     a.config.set("voice.stop_enabled", False)
-    monkeypatch.setattr(a, "_stop_keys", lambda: [])
+    monkeypatch.setattr(a, "_stop_keys", list)
     a._start_stop_listener()
     assert getattr(a, "_stop_thread", None) is None
 
@@ -295,7 +296,7 @@ def test_push_to_talk_stop_key_aborts(monkeypatch):
     class KB:
         def is_pressed(self, key):
             # hold key not pressed yet; stop key is pressed -> abort
-            return False if key == "space" else True
+            return key != "space"
 
     monkeypatch.setitem(sys.modules, "keyboard", KB())
     out = vi.listen_push_to_talk(hold_key="space")
@@ -341,8 +342,8 @@ def test_speak_stop_speaking(monkeypatch):
             pass
 
     a = Assistant.__new__(Assistant)
-    import threading as _t
     import collections
+    import threading as _t
     a._tts_stop = _t.Event()
     a._tts_queue = collections.deque()
     a._speaking = _t.Event()
@@ -364,6 +365,7 @@ def test_speak_stop_speaking(monkeypatch):
 def test_stop_aborts_active_voice_listen(monkeypatch):
     """_on_stop_press must abort the VoiceInput instance currently listening."""
     import threading as _t
+
     from assistant.core.app import Assistant
     rec = FakeRec(final_text="不该识别")
     frames = [_speech_block()] * 2
@@ -386,8 +388,9 @@ def test_stop_aborts_active_voice_listen(monkeypatch):
 
 def test_abort_now_stops_speech_and_notifies_listeners(monkeypatch):
     """abort_now must stop speech and fire registered abort callbacks."""
-    import threading as _t
     import collections
+    import threading as _t
+
     from assistant.core.app import Assistant
     a = Assistant.__new__(Assistant)
     a.config = None

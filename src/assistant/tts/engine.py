@@ -14,7 +14,7 @@ import threading
 from dataclasses import dataclass
 from typing import Any
 
-from ..audio import play_pcm, StopRequested
+from ..audio import StopRequested, play_pcm
 
 log = logging.getLogger(__name__)
 
@@ -58,7 +58,7 @@ class BaseTTS:
     def stop(self) -> None:
         """Interrupt any in-progress utterance."""
 
-    def close(self) -> None:  # noqa: B027 - no-op base
+    def close(self) -> None:
         pass
 
 

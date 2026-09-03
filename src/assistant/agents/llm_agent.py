@@ -3,8 +3,8 @@ from __future__ import annotations
 
 import logging
 
-from .hub import AgentContext
 from ..core.llm import LLMClient
+from .hub import AgentContext
 
 log = logging.getLogger(__name__)
 
@@ -50,7 +50,7 @@ class LLMAgent:
                 params = {"text": str(args) if args is not None else ""}
             try:
                 return skill.run(params, ctx.to_skill_context())
-            except Exception as e:  # noqa: BLE001
+            except Exception as e:
                 log.exception("skill %s failed", name)
                 return "技能执行失败：" + str(e)
         return run
@@ -90,7 +90,7 @@ class LLMAgent:
                     self.memory.add("user", text)
                     self.memory.add("assistant", reply)
                 return reply, emotion
-            except Exception as e:  # noqa: BLE001
+            except Exception as e:
                 log.warning("LLM unavailable: %s", e)
 
         return f"我收到你说的：{text}", "neutral"

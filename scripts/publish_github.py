@@ -46,7 +46,7 @@ def main(argv=None) -> int:
         print("[publish] GitHub CLI (gh) is required.", file=sys.stderr)
         print("Install: https://cli.github.com/  then run: gh auth login", file=sys.stderr)
         return 1
-    code, _, err = _run(["gh", "auth", "status"], check=False)
+    code, _, _err = _run(["gh", "auth", "status"], check=False)
     if code != 0:
         print("[publish] You are not logged in to GitHub.", file=sys.stderr)
         print("Run: gh auth login", file=sys.stderr)
@@ -72,7 +72,7 @@ def main(argv=None) -> int:
     # 3) build artifacts (optional but useful for a release)
     print("[publish] building distributions ...")
     code, _, _ = _run([sys.executable, "-m", "pip", "install", "--quiet", "build"], check=False)
-    code2, _, err2 = _run([sys.executable, "-m", "build"], check=False)
+    code2, _, _err2 = _run([sys.executable, "-m", "build"], check=False)
     if code != 0 or code2 != 0:
         print("[publish] build step failed; continuing with source-only release.", file=sys.stderr)
         assets = []
@@ -81,7 +81,7 @@ def main(argv=None) -> int:
         assets = sorted(glob.glob("dist/*.tar.gz") + glob.glob("dist/*.whl"))
 
     # 4) create the release
-    title = tag[1:] if tag.startswith("v") else tag
+    title = tag.removeprefix("v")
     cmd = ["gh", "release", "create", tag, "--title", f"{APP} {title}",
            "--notes", "See CHANGELOG.md for details."]
     cmd += assets

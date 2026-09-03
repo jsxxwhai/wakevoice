@@ -11,9 +11,7 @@ from __future__ import annotations
 
 import json
 import logging
-from typing import Callable
-
-
+from collections.abc import Callable
 
 log = logging.getLogger(__name__)
 
@@ -141,6 +139,7 @@ class OpenWakeWordWake:
     def listen(self, on_wake: Callable[[str], None],
                on_idle: Callable | None = None, stop_event=None) -> None:
         import threading as _th
+
         import numpy as np
         self._stop_event = stop_event if stop_event is not None else _th.Event()
         chunk = int(self.sample_rate * 0.08)  # 80 ms frames
@@ -152,7 +151,7 @@ class OpenWakeWordWake:
                 data, _ = stream.read(chunk)
                 audio = np.frombuffer(bytes(data), dtype=np.int16)
                 pred = self._model.predict(audio)
-                for name, score in pred.items():
+                for score in pred.values():
                     if score >= self.sensitivity:
                         on_wake(self.word)
                         break

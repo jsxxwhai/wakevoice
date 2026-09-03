@@ -10,9 +10,9 @@ from __future__ import annotations
 
 import logging
 import re
+from collections.abc import Callable
 from dataclasses import dataclass, field
-from typing import Any, Callable
-
+from typing import Any
 
 log = logging.getLogger(__name__)
 
@@ -40,10 +40,7 @@ class Skill:
         `target`). Keywords act only as a fallback trigger.
         """
         for pat in self.patterns:
-            if hasattr(pat, "search"):  # compiled pattern
-                m = pat.search(text)
-            else:
-                m = re.search(pat, text, re.IGNORECASE)
+            m = pat.search(text) if hasattr(pat, "search") else re.search(pat, text, re.IGNORECASE)
             if m:
                 return m.groupdict() or {"text": text}
         lowered = text.lower()

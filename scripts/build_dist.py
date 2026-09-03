@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Build distributable packages for OpenVoice Desktop.
 
 Produces two end-user artifacts under build_out/:

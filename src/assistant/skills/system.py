@@ -2,9 +2,9 @@
 from __future__ import annotations
 
 import os
-from pathlib import Path
 import re
 import subprocess
+from pathlib import Path
 
 from .base import Skill
 
@@ -19,14 +19,14 @@ def _set_volume_posix(level):
     """Set volume on Linux/macOS via amixer or pactl (best effort)."""
     try:
         if subprocess.run(["amixer", "--version"], capture_output=True).returncode == 0:
-            subprocess.run(["amixer", "-q", "sset", "Master", "%d%%" % int(level)],
+            subprocess.run(["amixer", "-q", "sset", "Master", f"{int(level)}%"],
                            capture_output=True, timeout=10)
             return "volume set to " + str(int(level)) + "%"
     except Exception:
         pass
     try:
         if subprocess.run(["pactl", "--version"], capture_output=True).returncode == 0:
-            subprocess.run(["pactl", "set-sink-volume", "@DEFAULT_SINK@", "%d%%" % int(level)],
+            subprocess.run(["pactl", "set-sink-volume", "@DEFAULT_SINK@", f"{int(level)}%"],
                            capture_output=True, timeout=10)
             return "volume set to " + str(int(level)) + "%"
     except Exception:
@@ -88,8 +88,7 @@ def _system_info():
             "系统: " + platform.system() + " " + platform.release(),
             "机器: " + platform.machine(),
             "Python: " + platform.python_version(),
-            "磁盘: 已用 %.1f GB / 共 %.1f GB（剩余 %.1f GB）"
-            % (used / gb, total / gb, free / gb),
+            f"磁盘: 已用 {used / gb:.1f} GB / 共 {total / gb:.1f} GB（剩余 {free / gb:.1f} GB）",
         ]
         return "；".join(parts)
     except Exception as e:
@@ -227,7 +226,7 @@ def _write_file(path, text):
 def _read_file(path):
     try:
         path = os.path.expanduser(path)
-        with open(path, "r", encoding="utf-8") as f:
+        with open(path, encoding="utf-8") as f:
             return f.read(2001)[:2000]
     except Exception as e:
         return "读文件失败：" + str(e)

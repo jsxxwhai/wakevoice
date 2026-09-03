@@ -6,10 +6,11 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
-from assistant.agents.llm_agent import LLMAgent
 from assistant.agents.hub import AgentContext
+from assistant.agents.llm_agent import LLMAgent
+from assistant.skills import apps as A
+from assistant.skills import control as C
 from assistant.skills.base import SkillRegistry
-from assistant.skills import apps as A, control as C
 
 
 class FakeLLM:

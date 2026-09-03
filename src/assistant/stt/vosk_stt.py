@@ -7,8 +7,8 @@ from __future__ import annotations
 
 import json
 import logging
+from collections.abc import Callable
 from pathlib import Path
-from typing import Callable
 
 from ..core.errors import STTError
 
@@ -32,7 +32,7 @@ class VoskSTT:
     @property
     def model(self):
         if self._model is None:
-            from vosk import Model, KaldiRecognizer  # lazy import
+            from vosk import KaldiRecognizer, Model  # lazy import
             if not self.model_dir.exists():
                 raise STTError(f"Vosk model not found: {self.model_dir}")
             self._model = Model(str(self.model_dir))

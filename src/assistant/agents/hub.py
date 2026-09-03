@@ -6,9 +6,10 @@ call. Agents run concurrently via a thread pool for parallel tool use.
 from __future__ import annotations
 
 import logging
+from collections.abc import Callable
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass, field
-from typing import Any, Callable
+from typing import Any
 
 log = logging.getLogger(__name__)
 
@@ -19,7 +20,7 @@ class Agent:
     role: str
     description: str = ""
     system_prompt: str = ""
-    handler: Callable[[str, "AgentContext"], str] | None = None
+    handler: Callable[[str, AgentContext], str] | None = None
 
 
 @dataclass

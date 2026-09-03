@@ -30,6 +30,7 @@ class LLMClient:
     def _get_client(self):
         if self._client is None:
             import os
+
             from openai import OpenAI  # lazy import
             kwargs = {}
             if self.base_url:
@@ -99,7 +100,8 @@ class LLMClient:
         Returns (reply, emotion). If the model never calls a tool, it just answers.
         """
         if execute_tool is None:
-            execute_tool = lambda name, args="": ""  # noqa: E731
+            def execute_tool(name, args=""):
+                return ""
 
         tool_list = "\n".join(
             f"- {t['name']}: {t.get('description', '')}" for t in tools
@@ -134,7 +136,7 @@ class LLMClient:
                 args = data.get("args", "")
                 try:
                     result = execute_tool(tool, args)
-                except Exception as e:  # noqa: BLE001
+                except Exception as e:
                     result = "调用失败：" + str(e)
                 messages.append({"role": "assistant", "content": json.dumps(data, ensure_ascii=False)})
                 messages.append({"role": "user", "content": "工具结果：" + str(result)})

@@ -67,8 +67,8 @@ def test_mcp_bridge_error_returns_friendly():
 
 def test_vosk_stt_recognize_bytes(monkeypatch, tmp_path):
     """VoskSTT.recognize_bytes finalizes and returns recognized text."""
-    import types
     import json as _json
+    import types
 
     fake_vosk = types.ModuleType("vosk")
 
@@ -99,9 +99,10 @@ def test_vosk_stt_recognize_bytes(monkeypatch, tmp_path):
 
 def test_vosk_stt_missing_model_raises(monkeypatch, tmp_path):
     """A missing model directory raises STTError on first access."""
-    from assistant.stt.vosk_stt import VoskSTT
-    from assistant.core.errors import STTError
     import pytest
+
+    from assistant.core.errors import STTError
+    from assistant.stt.vosk_stt import VoskSTT
 
     stt = VoskSTT(tmp_path / "does-not-exist", 16000, "zh-CN")
     with pytest.raises(STTError):

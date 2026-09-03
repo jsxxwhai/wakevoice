@@ -6,9 +6,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
-from assistant.skills.base import SkillRegistry
 from assistant.skills import control as control_skill
 from assistant.skills import system as system_skill
+from assistant.skills.base import SkillRegistry
 
 
 def _reg():
@@ -44,7 +44,7 @@ def test_clipboard_write_pattern():
 
 def test_screenshot_pattern():
     reg = _reg()
-    skill, params = reg.route("帮我截个图")
+    skill, _params = reg.route("帮我截个图")
     assert skill.name == "screenshot"
 
 
@@ -93,7 +93,7 @@ def test_new_system_skills_route():
         ("最小化所有窗口", "minimize_windows"),
     ]
     for text, expected in cases:
-        skill, params = reg.route(text)
+        skill, _params = reg.route(text)
         assert skill is not None, f"no skill matched: {text}"
         assert skill.name == expected, f"{text} -> {skill.name} != {expected}"
 
@@ -116,14 +116,14 @@ def test_routing_open_app_not_hijacked_by_read_file():
     from assistant.skills import apps as apps_skill
     reg = _reg()
     reg.register(apps_skill.open_app_skill())
-    skill, params = reg.route("打开百度")
+    skill, _params = reg.route("打开百度")
     assert skill.name == "open_app"
 
 
 def test_write_file_missing_text_does_not_crash(tmp_path):
     """'写入 hello' (no content) must not raise; empty text defaults to ''."""
     reg = _reg()
-    skill, params = reg.route("写入 hello")
+    skill, _params = reg.route("写入 hello")
     assert skill.name == "write_file"
     # handler must accept a missing/None text without crashing
     target = tmp_path / "hello"
@@ -142,7 +142,7 @@ def test_read_file_pattern_extracts_path():
 def test_routing_clipboard_read_not_hijacked():
     """'读取剪贴板' must route to clipboard_read, not read_file."""
     reg = _reg()
-    skill, params = reg.route("读取剪贴板")
+    skill, _params = reg.route("读取剪贴板")
     assert skill.name == "clipboard_read"
     skill2, _ = reg.route("剪贴板")
     assert skill2.name == "clipboard_read"
@@ -207,8 +207,9 @@ class _FakeOS:
 
 def test_screenshot_default_path_not_cwd(monkeypatch, tmp_path):
     """_screenshot with no path writes to Pictures, not the current dir."""
-    from assistant.skills import system as S
     import types
+
+    from assistant.skills import system as S
 
     pics = tmp_path / "Pictures"
     # redirect expanduser("~") to a temp base so no real Pictures is touched

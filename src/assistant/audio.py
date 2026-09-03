@@ -14,7 +14,6 @@ import time
 import wave
 from pathlib import Path
 
-
 log = logging.getLogger(__name__)
 
 def _sd():

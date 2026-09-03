@@ -6,21 +6,21 @@ import threading
 import time
 from collections import deque
 
+from ..agents.hub import Agent, AgentContext, AgentHub
+from ..agents.llm_agent import LLMAgent
 from ..audio import StopRequested
+from ..connectors.client import MCPManager
 from ..paths import resolve
-from .config import Config
-from .logging import setup_logging
-from ..skills.base import SkillRegistry
 from ..skills import apps as apps_skill
 from ..skills import control as control_skill
-from ..skills import system as system_skill
-from ..skills import plugins as plugin_loader
 from ..skills import mcp_bridge
-from ..agents.hub import Agent, AgentHub, AgentContext
-from ..agents.llm_agent import LLMAgent
+from ..skills import plugins as plugin_loader
+from ..skills import system as system_skill
+from ..skills.base import SkillRegistry
+from .config import Config
 from .llm import LLMClient
+from .logging import setup_logging
 from .memory_ctx import Memory
-from ..connectors.client import MCPManager
 
 log = logging.getLogger(__name__)
 
@@ -143,8 +143,8 @@ class Assistant:
     @property
     def wake(self):
         if self._wake is None:
-            from ..wake.keyword import create_wake
             from ..core.errors import WakeWordError
+            from ..wake.keyword import create_wake
             model = resolve(str(self.config.get("stt.model_dir", "vosk-model-small-cn-0.22") or "vosk-model-small-cn-0.22"))
             backend = self.config.get("wake.engine", "keyword")
             valid = self.config.get("wake.backends", ["keyword", "openwakeword"]) or []
@@ -287,7 +287,7 @@ class Assistant:
                 self.tts.say(text, emotion, stop_event=self._tts_stop)
             except StopRequested:
                 log.info("tts interrupted by stop key")
-            except Exception as e:  # noqa: BLE001
+            except Exception as e:
                 log.warning("tts say failed: %s", e)
                 # If the online edge TTS cannot produce audio (no network,
                 # endpoint issue), fall back to the offline pyttsx3 engine
@@ -347,7 +347,7 @@ class Assistant:
         secs = float(self.config.get("voice.silence_seconds", 1.5) or 1.5)
         sr = int(self.config.get("stt.sample_rate", 16000))
         block_secs = 1600.0 / float(sr)  # capture block length in seconds
-        return max(2, int(round(secs / block_secs)))
+        return max(2, round(secs / block_secs))
 
     def _voice_mode(self) -> str:
         return str(self.config.get("voice.mode", "hands_free") or "hands_free").lower()
