@@ -2,28 +2,33 @@
 
 # 🎙️ OpenVoice Desktop
 
-**对着电脑说话，它就帮你干活。** Hands-free Chinese voice assistant for your desktop.
+**对着电脑说话，它就帮你干活。**
 
-> 说一句“你好伙伴”，它答应一声；再用嘴说命令，它照做 —— 全程不用碰键盘。
-> Wake word → spoken command → done. Runs locally, works offline, no cloud account.
+一个**完全本地、离线可用**的中文语音助手：说一句唤醒词它就答应，再用嘴说出指令它照做——全程不用碰键盘，数据不出你的电脑。
+
+> 💬 Wake word → spoken command → done. 100% on-device · no cloud · no subscription · private by default
 
 [![Release](https://img.shields.io/github/v/release/jsxxwhai/openvoice-desktop?color=blue&label=Latest%20Release)](https://github.com/jsxxwhai/openvoice-desktop/releases)
 [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
-[![Stars](https://img.shields.io/github/stars/jsxxwhai/openvoice-desktop?style=social)](https://github.com/jsxxwhai/openvoice-desktop)
-
-**Free · Open source · No cloud · No data leaves your PC**
-
-If this project helps you, **give it a Star ⭐** — it motivates us to keep building.
+[![Stars](https://img.shields.io/github/stars/jsxxwhai/openvoice-desktop?style=social&label=Star)](https://github.com/jsxxwhai/openvoice-desktop)
 
 </div>
 
-> [!IMPORTANT]
-> This is the public-facing README for the GitHub repository. It deliberately
-> avoids third-party product names, logos, or trademarked assistant personas so
-> the project can be published without endorsement or affiliation concerns.
+> [!NOTE]
+> 这个项目是**原创独立开发的桌面语音助手**，不包含、不模仿任何第三方品牌或受版权保护的内容。MIT 协议开源，可自由使用、修改与再分发。
 
-## 🚀 What it feels like
+## ⭐ 为什么值得你点 Star
+
+- 🆓 **完全免费、完全开源**（MIT）：不锁功能、不收费、可商用。
+- 🔒 **本地优先**：唤醒、识别、基础对话全部在本地跑，断网也能用，隐私不出门。
+- 🎙️ **真的不用手**：自定义唤醒词，说完停顿自动执行，解放双手。
+- ⚡ **即开即用**：便携 EXE 版免装 Python，双击就能用。
+- 🧩 **能自己扩展**：丢一个 `.py` 文件进 `skills/` 就多一个技能。
+
+> ⭐ **如果它对你有帮助，请给仓库点一个 Star** —— 你的支持是作者持续维护的最大动力。
+
+## 🚀 用起来是什么感觉
 
 ```
 你：你好伙伴
@@ -39,7 +44,7 @@ If this project helps you, **give it a Star ⭐** — it motivates us to keep bu
 
 - 🔉 说“你好伙伴”唤醒，它回应“我在”
 - 🗣️ 用嘴直接说命令，**停顿 1.5 秒自动执行**（不用按键）
-- ⏹ 想打断/停止，随时按 `Esc`
+- ⏹ 想打断/停止，随时按 `Esc`（可在配置里关闭）
 - 🌐 全程本地处理，无云账号、无订阅、数据不出电脑
 
 ## Download
