@@ -106,3 +106,32 @@ def test_execute_skill_accepts_dict_args():
     # string args fall back to the text param
     assert run("type_text", "hi") == "ok"
     assert rec.text == "hi"
+
+
+def test_offline_fallback_natural_replies():
+    """When no skill matches and no LLM is set, replies must be natural and
+    helpful instead of mechanically echoing the user text back."""
+    reg = SkillRegistry()
+    agent = LLMAgent(name="general")  # no llm -> hits the final fallback
+    ctx = AgentContext(config=None, skills=reg, speak=None)
+
+    reply, emotion = agent.respond("你好呀", ctx)
+    assert "你好呀" in reply
+    assert emotion == "happy"
+
+    reply, emotion = agent.respond("讲个笑话", ctx)
+    assert "我收到你说的" not in reply
+    assert "换个说法" in reply
+    assert emotion == "neutral"
+
+    reply, emotion = agent.respond("谢谢", ctx)
+    assert "不客气" in reply
+    assert emotion == "happy"
+
+    reply, emotion = agent.respond("拜拜", ctx)
+    assert "再见" in reply
+    assert emotion == "neutral"
+
+    reply, emotion = agent.respond("", ctx)
+    assert "我在这儿" in reply
+    assert emotion == "neutral"
