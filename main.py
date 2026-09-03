@@ -44,9 +44,32 @@ def _ensure_deps() -> None:
         print("依赖安装完成。")
 
 
+def _ensure_config() -> None:
+    """Auto-create config/config.yaml from the example on first run.
+
+    Never overwrites an existing file, so re-launching is always safe and the
+    user always ends up with a real, editable config after the first start.
+    """
+    try:
+        from pathlib import Path
+        here = Path(os.path.dirname(os.path.abspath(__file__)))
+        dst = here / "config" / "config.yaml"
+        if dst.exists():
+            return
+        src = here / "config" / "config.example.yaml"
+        if not src.exists():
+            return
+        dst.parent.mkdir(parents=True, exist_ok=True)
+        dst.write_text(src.read_text(encoding="utf-8"), encoding="utf-8")
+        print("首次运行：已生成 config/config.yaml（可修改唤醒词/按键）。")
+    except Exception as e:  # best-effort; built-in defaults still work
+        print("提示：自动生成配置文件失败（{}），将使用默认配置。".format(e))
+
+
 def main() -> int:
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
     _ensure_deps()
+    _ensure_config()
     from assistant.cli import main as cli_main
     return cli_main()
 

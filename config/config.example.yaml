@@ -34,9 +34,9 @@ voice:
   stop_enabled: true # 设为 false 可关闭“停止键”功能
 
 llm:
-  base_url: null       # 自定义 base_url 可接入 DeepSeek/Ollama/vLLM 等
-  api_key_env: OPENAI_API_KEY
-  model: gpt-4o-mini
+  base_url: null       # 自定义 base_url 可接入任意 Chat Completions 兼容服务
+  api_key_env: OPENAI_API_KEY   # 环境变量名，可改为你自己的 key 名
+  model: 你的模型名   # 如 gpt-4o-mini / deepseek-chat / qwen-plus 等（按你的服务填）
   temperature: 0.7
   timeout: 20.0        # 单次请求超时（秒），超时自动回退本地回复
   enabled: true        # 设为 false 可完全离线运行（无需 API key）

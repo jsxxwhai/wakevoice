@@ -192,7 +192,7 @@ A: 用记事本打开 config/config.yaml（可复制 config.example.yaml 生成�
 
 【高级（可选）】
 想接入大模型让回答更聪明：设置环境变量 OPENAI_API_KEY，或在
-config/config.yaml 的 llm 段填入 base_url / key（支持 OpenAI 兼容接口，
+config/config.yaml 的 llm 段填入 base_url / key（支持任意 Chat Completions 兼容接口，
 如 DeepSeek、Ollama 等）。没有密钥也能正常使用本地技能。
 """
 
@@ -241,7 +241,7 @@ A: 用记事本打开本文件夹里的 config/config.yaml，修改 wake.word �
 
 【高级（可选）】
 想接入大模型让回答更聪明：设置系统环境变量 OPENAI_API_KEY，或在
-config/config.yaml 的 llm 段填入 base_url / key（支持 OpenAI 兼容接口）。
+config/config.yaml 的 llm 段填入 base_url / key（支持任意 Chat Completions 兼容接口）。
 没有密钥也能正常使用本地技能。
 """
 

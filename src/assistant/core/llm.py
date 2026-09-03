@@ -1,7 +1,7 @@
-"""LLM integration: OpenAI-compatible chat + emotion + intent routing.
+"""LLM integration: chat + emotion + intent routing.
 
-Supports any OpenAI-compatible endpoint (OpenAI, DeepSeek, Ollama, vLLM, etc.)
-via `base_url`. Uses a lightweight structured prompt so the model returns
+Uses any Chat Completions-compatible endpoint (DeepSeek, Ollama, vLLM, etc.)
+via `base_url` with a lightweight structured prompt so the model returns
 JSON with `reply` and `emotion` fields, enabling emotional voice output.
 """
 from __future__ import annotations
@@ -15,7 +15,7 @@ EMOTIONS = ["neutral", "happy", "sad", "angry", "fear", "excited", "gentle", "ca
 
 
 class LLMClient:
-    """Thin wrapper over the OpenAI SDK; lazy import to keep memory low."""
+    """Thin wrapper over the optional LLM SDK; lazy import to keep memory low."""
 
     def __init__(self, base_url: str | None = None, api_key_env: str = "OPENAI_API_KEY",
                  model: str = "gpt-4o-mini", temperature: float = 0.7,

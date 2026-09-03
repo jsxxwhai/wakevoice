@@ -120,10 +120,31 @@ def verify_setup() -> bool:
 
 
 
+
+def ensure_config() -> None:
+    """Create config/config.yaml from config.example.yaml on first run.
+
+    Idempotent: never overwrites an existing user config, so every launch is
+    safe. Gives new users a real editable file (wake word, keys, model) right
+    after a double-click install.
+    """
+    dst = ROOT / "config" / "config.yaml"
+    if dst.exists():
+        return
+    src = ROOT / "config" / "config.example.yaml"
+    if not src.exists():
+        print("==> config.example.yaml missing; using built-in defaults.")
+        return
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    dst.write_text(src.read_text(encoding="utf-8"), encoding="utf-8")
+    print("==> 已生成配置文件: config/config.yaml（可自行修改唤醒词等）")
+
+
 def main() -> int:
     install_deps()
     install_package()
     download_model()
+    ensure_config()
     print()
     if not verify_setup():
         print("==> Setup incomplete; please fix the issues above and re-run.")
