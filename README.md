@@ -47,6 +47,9 @@
 - ⏹ 想打断/停止，随时按 `Esc`（可在配置里关闭）
 - 🌐 全程本地处理，无云账号、无订阅、数据不出电脑
 
+![OpenVoice Desktop 对话演示](assets/demo.png)
+
+---
 ## Download
 
 This project ships as **two distributions** — pick whichever fits your machine:
