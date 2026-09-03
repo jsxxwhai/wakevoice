@@ -1,0 +1,62 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "openvoice-desktop"
+version = "0.2.0"
+description = "A highly customizable, low-memory, multi-agent desktop voice assistant with pluggable wake word, emotional TTS, and MCP support."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "OpenVoice Desktop Contributors" }]
+keywords = ["voice-assistant", "wake-word", "tts", "mcp", "multi-agent", "automation", "speech"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Multimedia :: Sound/Audio :: Speech",
+]
+
+dependencies = [
+    "pyyaml>=6.0",
+    "sounddevice>=0.4.6",
+    "numpy>=1.24",
+    "vosk>=0.3.45",
+    "pyttsx3>=2.90",
+    "edge-tts>=6.1.0",
+    "pyautogui>=0.9.54",
+    "keyboard>=0.13.5",
+    "pyperclip>=1.8.2",
+    "pytesseract>=0.3.10",
+    "mss>=9.0.1",
+    "pillow>=10.0",
+    "requests>=2.31",
+    "rich>=13.0",
+]
+
+[project.optional-dependencies]
+wake = ["openwakeword>=0.6.0"]
+llm = ["openai>=1.0"]
+dev = ["pytest>=7.0", "ruff>=0.1"]
+
+[project.scripts]
+openvoice = "assistant.cli:main"
+openvoice-desktop = "assistant.cli:main"
+
+# TODO: replace these placeholders with the real repository before the first
+# public release. Keeps PyPI/GitHub metadata consistent without pointing at a
+# non-existent repository.
+[project.urls]
+Homepage = "https://github.com/jsxxwhai/openvoice-desktop"
+Documentation = "https://github.com/jsxxwhai/openvoice-desktop#readme"
+Issues = "https://github.com/jsxxwhai/openvoice-desktop/issues"
+Source = "https://github.com/jsxxwhai/openvoice-desktop"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+packages = { find = { where = ["src"] } }
+
+[tool.setuptools.package-data]
+assistant = ["**/*.yaml", "**/*.yml", "**/*.json"]

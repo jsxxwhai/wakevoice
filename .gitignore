@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+
+# Models & large binaries
+vosk-model*/
+*.zip
+*.onnx
+*.bin
+!*.example
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# Local config / user data
+config/local.yaml
+笔记.txt
+*.log
+
+# Test caches
+.pytest_cache/
+.coverage
+htmlcov/
+
+# runtime scratch (audio temp files)
+runtime_tmp/
+
+# Build outputs & scratch
+build_out/
+crash_log.txt

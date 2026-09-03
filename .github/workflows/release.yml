@@ -1,0 +1,65 @@
+# Build source/wheel distributions and publish a GitHub Release when a
+# version tag (v*) is pushed. Runs the full test+lint gate first; the release
+# only happens if everything passes.
+#
+# Usage: tag a commit and push:
+#   git tag v0.1.1
+#   git push origin v0.1.1
+#
+# The workflow uses the automatic GITHUB_TOKEN, so no personal token is
+# stored in the repository. See SECURITY.md / CONTRIBUTING.md before running.
+
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .[dev]
+      - name: Lint
+        run: ruff check src/ tests/ examples/ skills/ scripts/
+      - name: Test
+        run: pytest tests/ -q
+
+  publish:
+    needs: test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install build tooling
+        run: python -m pip install --upgrade pip build
+      - name: Build distributions
+        run: python -m build
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          TAG="${{ github.ref_name }}"
+          # Strip a leading "v" for the friendly title if present.
+          TITLE="${TAG#v}"
+          gh release create "$TAG" \
+            dist/*.tar.gz dist/*.whl \
+            --title "OpenVoice Desktop $TITLE" \
+            --notes "See [CHANGELOG.md](CHANGELOG.md) for details."

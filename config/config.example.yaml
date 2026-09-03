@@ -1,0 +1,75 @@
+# OpenVoice Desktop 默认配置
+# 复制本文件为 config.yaml 并按需修改
+
+app:
+  name: OpenVoice   # 助手名字（唤醒后自称）
+  log_level: INFO   # DEBUG / INFO / WARNING / ERROR
+
+wake:
+  engine: keyword   # keyword(vosk 任意自定义词) / openwakeword
+  word: 你好伙伴        # ← 自定义唤醒词，改成任意你想要的词即可
+  sensitivity: 0.5  # 模糊匹配阈值 (0~1)，越大越严格
+  backends: [keyword, openwakeword]  # 可用引擎列表
+
+stt:
+  engine: vosk
+  model_dir: vosk-model-small-cn-0.22   # 相对或绝对路径
+  sample_rate: 16000
+  language: zh-CN
+
+tts:
+  engine: edge      # edge(有情感) / pyttsx3(离线兜底)
+  voice: zh-CN-XiaoxiaoNeural
+  rate: "+0%"
+  pitch: "+0Hz"
+  volume: "+0%"
+  style: general    # 无情绪时的默认语气
+  emotion_enabled: true
+
+voice:
+  mode: hands_free   # hands_free=免提(停顿自动结束) / push_to_talk=按住说话
+  hold_key: space    # push_to_talk 模式下按住说话的键
+  silence_seconds: 1.5   # 免提模式下，说完话后静音多久自动执行(秒)
+  stop_key: esc      # 一键停止/打断的按键
+  stop_enabled: true # 设为 false 可关闭“停止键”功能
+
+llm:
+  base_url: null       # 自定义 base_url 可接入 DeepSeek/Ollama/vLLM 等
+  api_key_env: OPENAI_API_KEY
+  model: gpt-4o-mini
+  temperature: 0.7
+  timeout: 20.0        # 单次请求超时（秒），超时自动回退本地回复
+  enabled: true        # 设为 false 可完全离线运行（无需 API key）
+
+skills:
+  enabled: true
+  disabled: []
+  plugin_dir: skills   # 本地插件目录
+
+agents:
+  max_workers: 4
+  default_agent: general
+
+mcp:
+  auto_discover: true
+  servers: []          # 在这里添加自定义 MCP 服务器
+  # 示例：
+  # - name: filesystem
+  #   command: ["npx", "-y", "@modelcontextprotocol/server-filesystem", "C:/"]
+
+screen:
+  backend: mss
+  ocr_enabled: true
+  ocr_lang: chi_sim+eng
+
+# 安全围栏：涉及屏幕/黑屏的系统操作默认关闭，避免误触发。如确认需要，
+# 把 allow_screen_control 设为 true（同时会开启“锁屏”“最小化/显示桌面”等指令）。
+safety:
+  allow_screen_control: false
+  runtime_dir: runtime_tmp   # 运行时临时文件目录（放在项目目录内，不写系统盘 C:）
+  max_temp_mb: 50            # 临时音频/录制文件总大小上限（MB）
+  cleanup_on_start: true     # 启动时清理上次残留的临时文件
+
+memory:
+  max_turns: 10       # 对话短期记忆轮数
+  file: ""            # 可选：设为文件名可持久化记忆
