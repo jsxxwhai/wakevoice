@@ -1,12 +1,12 @@
 # Contributing
 
-Thank you for your interest in contributing to OpenVoice Desktop!
+Thank you for your interest in contributing to WakeVoice!
 
 ## Setup
 
 ```bash
 git clone <repo-url>
-cd openvoice-desktop
+cd wakevoice
 pip install -e .[dev]
 ```
 
@@ -66,7 +66,7 @@ Before the first public release:
 2. Add the remote and log in once:
 
    ```bash
-   git remote add origin https://github.com/jsxxwhai/openvoice-desktop
+   git remote add origin https://github.com/jsxxwhai/wakevoice
    gh auth login
    ```
 

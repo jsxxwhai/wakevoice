@@ -1,11 +1,11 @@
 # 双仓库发布指南（GitHub 两版分发）
 
-OpenVoice Desktop 按“最终用户拿到的形态”拆成 **两个独立 GitHub 仓库**：
+WakeVoice 按“最终用户拿到的形态”拆成 **两个独立 GitHub 仓库**：
 
 | 仓库 | 内容 | 适用用户 | 如何运行 |
 |---|---|---|---|
-| `openvoice-desktop` | 完整源码 + 一键脚本 `安装并启动.bat` | 愿意/需要看源码、会装 Python 的用户 | 双击 `安装并启动.bat`，自动装依赖→下模型→启动 |
-| `openvoice-desktop-portable` | EXE 便携版（`OpenVoiceDesktop.exe` + `_internal/`） | 不想装 Python 的普通用户 | 双击 `OpenVoiceDesktop.exe`，首次自动下模型 |
+| `wakevoice` | 完整源码 + 一键脚本 `安装并启动.bat` | 愿意/需要看源码、会装 Python 的用户 | 双击 `安装并启动.bat`，自动装依赖→下模型→启动 |
+| `wakevoice-portable` | EXE 便携版（`WakeVoiceDesktop.exe` + `_internal/`） | 不想装 Python 的普通用户 | 双击 `WakeVoiceDesktop.exe`，首次自动下模型 |
 
 > 两个版本**同源**：便携 EXE 由源码仓库的 `scripts/build_dist.py` 构建，只是分发形态不同。
 > 语音助手行为完全一致：唤醒词“你好伙伴”→应答“我在”→口语指令→停顿 1.5 秒执行 / ESC 停止。
@@ -22,19 +22,19 @@ gh auth login
 gh auth status
 
 # 3. 创建两个仓库（公开或私有都可以）
-gh repo create openvoice-desktop        --public --description "OpenVoice Desktop - green source version (double-click launcher)"      --source . --push
-gh repo create openvoice-desktop-portable --public --description "OpenVoice Desktop - portable EXE version (no Python needed)"
+gh repo create wakevoice        --public --description "WakeVoice - green source version (double-click launcher)"      --source . --push
+gh repo create wakevoice-portable --public --description "WakeVoice - portable EXE version (no Python needed)"
 ```
 
 > 若本地 git 想同时关联两个远程（源码仓库为主、便携仓库为辅），在源码根目录：
 > ```bash
-> git remote add origin   https://github.com/jsxxwhai/openvoice-desktop.git
-> git remote add portable https://github.com/jsxxwhai/openvoice-desktop-portable.git
+> git remote add origin   https://github.com/jsxxwhai/wakevoice.git
+> git remote add portable https://github.com/jsxxwhai/wakevoice-portable.git
 > ```
 
 ---
 
-## 二、发布源码版（仓库 A：openvoice-desktop）
+## 二、发布源码版（仓库 A：wakevoice）
 
 流程：改版本 → 打 tag → 推送 → CI（GitHub Actions）自动跑测试并建 Release。
 
@@ -50,23 +50,23 @@ git push origin main v0.2.0
 ```
 
 Release 会自动创建于
-`https://github.com/jsxxwhai/openvoice-desktop/releases/tag/v0.2.0`，
+`https://github.com/jsxxwhai/wakevoice/releases/tag/v0.2.0`，
 内容为 `sdist` + `wheel` + 便携 zip（若你在工作流里额外上传）。
 
 ---
 
-## 三、发布便携版（仓库 B：openvoice-desktop-portable）
+## 三、发布便携版（仓库 B：wakevoice-portable）
 
 便携仓库只放“运行所需文件 + 说明”，不放源码与构建脚本：
 
 ```bash
 # 1) 在源码仓库构建出便携 zip（含 EXE、运行库、说明、不含语音模型）
 python scripts/build_dist.py --clean --portable --zip
-#   产物: build_out/OpenVoiceDesktop-portable-v0.2.0.zip
+#   产物: build_out/WakeVoiceDesktop-portable-v0.2.0.zip
 
-# 2) 把 zip 里的内容展开到便携仓库工作目录（zip 顶层是 OpenVoiceDesktop-v0.2.0/）
+# 2) 把 zip 里的内容展开到便携仓库工作目录（zip 顶层是 WakeVoiceDesktop-v0.2.0/）
 #    提交如下文件即可：
-#    OpenVoiceDesktop.exe / _internal/ / 使用说明.txt / README.md / LICENSE
+#    WakeVoiceDesktop.exe / _internal/ / 使用说明.txt / README.md / LICENSE
 ```
 
 便携仓库 `README.md` 应使用 `release_templates/README_portable.md` 模板，
@@ -84,7 +84,7 @@ python scripts/build_dist.py --clean --portable --zip
 ## 五、验证
 
 - 源码版：双击 `安装并启动.bat`，能听到“唤醒词已就绪…”。
-- 便携版：双击 `OpenVoiceDesktop.exe --version` 输出版本号；运行后对“你好伙伴”应答“我在”。
+- 便携版：双击 `WakeVoiceDesktop.exe --version` 输出版本号；运行后对“你好伙伴”应答“我在”。
 - 两个仓库各自 Releases 页能看到对应资产。
 
 详细打包参数见 `scripts/build_dist.py` 顶部注释。

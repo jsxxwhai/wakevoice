@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🎙️ OpenVoice Desktop
+# 🎙️ WakeVoice
 
 **对着电脑说话，它就帮你干活。**
 
@@ -8,11 +8,11 @@
 
 > 💬 Wake word → spoken command → done. 100% on-device · no cloud · no subscription · private by default
 
-[![Release](https://img.shields.io/github/v/release/jsxxwhai/openvoice-desktop?color=blue&label=Latest%20Release)](https://github.com/jsxxwhai/openvoice-desktop/releases)
+[![Release](https://img.shields.io/github/v/release/jsxxwhai/wakevoice?color=blue&label=Latest%20Release)](https://github.com/jsxxwhai/wakevoice/releases)
 [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
-[![CI](https://github.com/jsxxwhai/openvoice-desktop/actions/workflows/ci.yml/badge.svg)](https://github.com/jsxxwhai/openvoice-desktop/actions/workflows/ci.yml)
+[![CI](https://github.com/jsxxwhai/wakevoice/actions/workflows/ci.yml/badge.svg)](https://github.com/jsxxwhai/wakevoice/actions/workflows/ci.yml)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
-[![Stars](https://img.shields.io/github/stars/jsxxwhai/openvoice-desktop?style=social&label=Star)](https://github.com/jsxxwhai/openvoice-desktop)
+[![Stars](https://img.shields.io/github/stars/jsxxwhai/wakevoice?style=social&label=Star)](https://github.com/jsxxwhai/wakevoice)
 
 </div>
 
@@ -27,7 +27,7 @@
 
 </div>
 
-<img src="assets/og-card.png" alt="OpenVoice Desktop 社交卡片" width="100%"/>
+<img src="assets/og-card.png" alt="WakeVoice 社交卡片" width="100%"/>
 
 ## ⭐ 为什么值得你点 Star
 
@@ -58,7 +58,7 @@
 - ⏹ 想打断/停止，随时按 `Esc`（可在配置里关闭）
 - 🌐 全程本地处理，无云账号、无订阅、数据不出电脑
 
-![OpenVoice Desktop 对话演示](assets/demo.png)
+![WakeVoice 对话演示](assets/demo.png)
 
 ---
 ## Download
@@ -67,8 +67,8 @@ This project ships as **two distributions** — pick whichever fits your machine
 
 | Distribution | What you get | Requirements | Get it |
 |---|---|---|---|
-| **Source / green folder** | Full source + `安装并启动.bat` (auto-installs deps & downloads the speech model) | Windows 10/11 + Python 3.10+ | [openvoice-desktop](https://github.com/jsxxwhai/openvoice-desktop/releases) |
-| **Portable EXE** | `OpenVoiceDesktop.exe` + bundled runtime; no Python needed. First launch downloads the speech model next to the exe. | Windows 10/11 (64-bit) | [openvoice-desktop-portable](https://github.com/jsxxwhai/openvoice-desktop-portable/releases) |
+| **Source / green folder** | Full source + `安装并启动.bat` (auto-installs deps & downloads the speech model) | Windows 10/11 + Python 3.10+ | [wakevoice](https://github.com/jsxxwhai/wakevoice/releases) |
+| **Portable EXE** | `WakeVoiceDesktop.exe` + bundled runtime; no Python needed. First launch downloads the speech model next to the exe. | Windows 10/11 (64-bit) | [wakevoice-portable](https://github.com/jsxxwhai/wakevoice-portable/releases) |
 
 > Both versions speak the same assistant (wake word “你好伙伴”), and both are fully open source. The portable EXE is built from this repository by `scripts/build_dist.py`.
 
@@ -236,4 +236,4 @@ src/assistant/
 
 ## License
 
-[MIT](LICENSE) © OpenVoice Desktop Contributors
+[MIT](LICENSE) © WakeVoice Contributors

@@ -1,4 +1,4 @@
-"""完整示例：创建一个自定义的 OpenVoice Desktop 助手，注册自己的技能和 Agent。
+"""完整示例：创建一个自定义的 WakeVoice 助手，注册自己的技能和 Agent。
 
 运行前先: pip install -e .
 """

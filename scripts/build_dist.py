@@ -1,4 +1,4 @@
-"""Build distributable packages for OpenVoice Desktop.
+"""Build distributable packages for WakeVoice.
 
 Produces two end-user artifacts under build_out/:
 
@@ -8,7 +8,7 @@ Produces two end-user artifacts under build_out/:
                   Requires Python 3.10+ installed on the user's machine.
 
   2. portable/  - PyInstaller onedir bundle: a folder with
-                  OpenVoiceDesktop.exe. No Python needed. First launch
+                  WakeVoiceDesktop.exe. No Python needed. First launch
                   auto-downloads the speech model next to the exe.
 
 Run:
@@ -27,8 +27,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "build_out"
-SPEC = ROOT / "packaging" / "OpenVoiceDesktop.spec"
-DIST_APP = ROOT / "dist" / "OpenVoiceDesktop"
+SPEC = ROOT / "packaging" / "WakeVoiceDesktop.spec"
+DIST_APP = ROOT / "dist" / "WakeVoiceDesktop"
 PORTABLE = OUT / "portable"
 SOURCE = OUT / "source"
 
@@ -65,7 +65,7 @@ def build_portable() -> None:
         raise SystemExit(1)
     run([sys.executable, "-m", "PyInstaller", "--noconfirm", "--clean", str(SPEC)])
     if not DIST_APP.exists():
-        print("[build] PyInstaller did not produce dist/OpenVoiceDesktop")
+        print("[build] PyInstaller did not produce dist/WakeVoiceDesktop")
         raise SystemExit(1)
     if PORTABLE.exists():
         shutil.rmtree(PORTABLE)
@@ -115,17 +115,17 @@ def _remove_model_tree(folder: Path) -> None:
 
 
 def make_portable_zip() -> Path:
-    """Zip the portable EXE folder (OpenVoiceDesktop.exe + _internal)."""
+    """Zip the portable EXE folder (WakeVoiceDesktop.exe + _internal)."""
     if not PORTABLE.exists():
         print("[build] portable bundle missing; run --portable first")
         raise SystemExit(1)
     _remove_model_tree(PORTABLE)
     version = _version()
-    out_name = f"OpenVoiceDesktop-portable-v{version}.zip"
+    out_name = f"WakeVoiceDesktop-portable-v{version}.zip"
     out = OUT / out_name
     if out.exists():
         out.unlink()
-    root_name = f"OpenVoiceDesktop-v{version}"
+    root_name = f"WakeVoiceDesktop-v{version}"
     with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as z:
         base = PORTABLE
         for f in sorted(base.rglob("*")):
@@ -144,7 +144,7 @@ def _write_source_readme(dst: Path) -> None:
     _write_readme(dst, "使用说明.txt", _SOURCE_README)
 
 
-_SOURCE_README = """OpenVoice Desktop - 绿色源码版使用说明
+_SOURCE_README = """WakeVoice - 绿色源码版使用说明
 ==============================================
 
 【这是什么】
@@ -197,7 +197,7 @@ config/config.yaml 的 llm 段填入 base_url / key（支持 OpenAI 兼容接口
 """
 
 
-_PORTABLE_README = """OpenVoice Desktop - 便携版（EXE）使用说明
+_PORTABLE_README = """WakeVoice - 便携版（EXE）使用说明
 ==============================================
 
 【这是什么】
@@ -213,7 +213,7 @@ _PORTABLE_README = """OpenVoice Desktop - 便携版（EXE）使用说明
 
 【使用方法 - 只需两步】
 1. 把整个文件夹解压到任意位置（建议路径不要包含中文/空格）。
-2. 双击  OpenVoiceDesktop.exe
+2. 双击  WakeVoiceDesktop.exe
    第一次运行会先自动下载语音模型（显示进度），完成后自动进入语音助手。
 
 【怎么跟它说话】
@@ -247,12 +247,12 @@ config/config.yaml 的 llm 段填入 base_url / key（支持 OpenAI 兼容接口
 
 
 def main() -> int:
-    ap = argparse.ArgumentParser(description="Build OpenVoice Desktop distributions.")
+    ap = argparse.ArgumentParser(description="Build WakeVoice distributions.")
     ap.add_argument("--clean", action="store_true")
     ap.add_argument("--portable", action="store_true")
     ap.add_argument("--source", action="store_true")
     ap.add_argument("--zip", action="store_true",
-                    help="also produce OpenVoiceDesktop-portable-vX.zip from the portable folder")
+                    help="also produce WakeVoiceDesktop-portable-vX.zip from the portable folder")
     args = ap.parse_args()
     if args.clean:
         clean()

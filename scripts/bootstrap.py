@@ -88,11 +88,11 @@ def install_package() -> None:
     """
     try:
         import assistant  # noqa: F401
-        print("==> OpenVoice package already installed.")
+        print("==> WakeVoice package already installed.")
         return
     except Exception:
         pass
-    print("==> Installing OpenVoice package (editable)...")
+    print("==> Installing WakeVoice package (editable)...")
     run([sys.executable, "-m", "pip", "install", "-e", "."])
 
 

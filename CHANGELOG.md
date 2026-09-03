@@ -30,7 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   command directly and pause to finish.
 - Public-facing branding and docs were neutralized (no third-party assistant
   names, personas, or trademarks).
-- Internal code identifiers renamed from "Echo" to "OpenVoice" (default app
+- Internal code identifiers renamed from "Echo" to "WakeVoice" (default app
   name, CLI program name, thread names, temp-audio prefix, plugin module prefix).
 - Wake-word idle behavior: pressing the stop key while idle cancels the
   blocking wake listen and returns cleanly instead of leaving a stale listener.

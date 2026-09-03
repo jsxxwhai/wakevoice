@@ -263,7 +263,7 @@ class Assistant:
         self._stop_exit.clear()
         self._tts_stop.clear()
         self._tts_thread = threading.Thread(
-            target=self._tts_worker, name="openvoice-tts", daemon=True)
+            target=self._tts_worker, name="wakevoice-tts", daemon=True)
         self._tts_thread.start()
 
     def _tts_worker(self) -> None:
@@ -456,7 +456,7 @@ class Assistant:
                 self._stop_exit.wait(0.03)
 
         self._stop_thread = threading.Thread(
-            target=_watch, name="openvoice-stop", daemon=True)
+            target=_watch, name="wakevoice-stop", daemon=True)
         self._stop_thread.start()
 
     def _on_stop_press(self) -> None:
@@ -482,8 +482,8 @@ class Assistant:
         self._on_stop_press()
 
     def _say_hello(self) -> None:
-        name = self.config.get("app.name", "OpenVoice")
-        if name == "OpenVoice":
+        name = self.config.get("app.name", "WakeVoice")
+        if name == "WakeVoice":
             self.speak("我在。")
         else:
             self.speak("在的。")

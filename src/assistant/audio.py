@@ -50,7 +50,7 @@ def _cleanup_runtime(max_age_seconds: float = 3600.0) -> None:
     try:
         now = time.time()
         files = []
-        for path in d.glob("openvoice_tts_*.wav"):
+        for path in d.glob("wakevoice_tts_*.wav"):
             try:
                 files.append((path, path.stat().st_mtime, path.stat().st_size))
             except OSError:
@@ -130,7 +130,7 @@ def play_pcm(pcm: bytes, sample_rate: int, stop_event: threading.Event | None = 
     if not pcm:
         return False
     _cleanup_runtime(max_age_seconds=0.0)  # opportunistic tidy on entry
-    tmp = _project_runtime_dir() / f"openvoice_tts_{os.getpid()}_{threading.get_ident()}.wav"
+    tmp = _project_runtime_dir() / f"wakevoice_tts_{os.getpid()}_{threading.get_ident()}.wav"
     tmp.parent.mkdir(parents=True, exist_ok=True)
     try:
         _write_wav(tmp, pcm, sample_rate=sample_rate)

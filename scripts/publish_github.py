@@ -1,4 +1,4 @@
-"""Create a GitHub Release for OpenVoice Desktop from the local CLI.
+"""Create a GitHub Release for WakeVoice from the local CLI.
 
 This is a thin, safe wrapper around the GitHub CLI. It never uploads a token,
 never guesses a repository, and stops with a clear message if the environment
@@ -8,7 +8,7 @@ Prerequisites (one-time):
   1. git config user.name  "Your Name"
   2. git config user.email "you@example.com"
   3. gh auth login          (then re-run this script)
-  4. git remote add origin https://github.com/jsxxwhai/openvoice-desktop
+  4. git remote add origin https://github.com/jsxxwhai/wakevoice
 
 Usage:
   python scripts/publish_github.py            # create a release for HEAD
@@ -19,7 +19,7 @@ from __future__ import annotations
 import subprocess
 import sys
 
-APP = "openvoice-desktop"
+APP = "wakevoice"
 
 
 def _run(args, check=True):
@@ -56,7 +56,7 @@ def main(argv=None) -> int:
     code, out, _ = _run(["git", "remote", "-v"], check=False)
     if code != 0 or not out.strip():
         print("[publish] No git remote is configured.", file=sys.stderr)
-        print('Example: git remote add origin https://github.com/jsxxwhai/openvoice-desktop', file=sys.stderr)
+        print('Example: git remote add origin https://github.com/jsxxwhai/wakevoice', file=sys.stderr)
         return 1
 
     tag = args[0] if args else None

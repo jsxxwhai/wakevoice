@@ -50,7 +50,7 @@ def test_click_coords():
 
 def test_config_defaults():
     cfg = Config()
-    assert cfg.get("app.name") == "OpenVoice"
+    assert cfg.get("app.name") == "WakeVoice"
     assert cfg.get("wake.word") == "你好伙伴"
     assert cfg.get("tts.engine") == "edge"
 

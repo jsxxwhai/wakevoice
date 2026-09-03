@@ -1,12 +1,12 @@
-@echo off
+﻿@echo off
 setlocal EnableExtensions
 chcp 65001 >nul
 cd /d "%~dp0"
 
-title OpenVoice Desktop - 自动安装并启动
+title WakeVoice - 自动安装并启动
 
 echo ============================================================
-echo   欢迎使用 OpenVoice Desktop 中文语音助手
+echo   欢迎使用 WakeVoice 中文语音助手
 echo   本程序会自动完成以下步骤（只需一次，之后启动秒开）：
 echo    1. 检查 Python 环境
 echo    2. 安装所需依赖库

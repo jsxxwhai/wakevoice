@@ -30,7 +30,7 @@ class Config:
     @staticmethod
     def _builtin_defaults() -> dict[str, Any]:
         return {
-            "app": {"name": "OpenVoice", "log_level": "INFO"},
+            "app": {"name": "WakeVoice", "log_level": "INFO"},
             # `backends` is the list of valid wake engines; `engine` must be
             # one of these (validated when the wake detector is created).
             "wake": {"engine": "keyword", "word": "你好伙伴", "sensitivity": 0.5,

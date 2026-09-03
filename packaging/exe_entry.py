@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Boot entry used by the PyInstaller bundle (OpenVoiceDesktop.exe).
+"""Boot entry used by the PyInstaller bundle (WakeVoiceDesktop.exe).
 
 Responsibilities (all idempotent, so every launch is safe and fast):
 

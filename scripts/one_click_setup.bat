@@ -3,10 +3,10 @@ setlocal EnableExtensions
 chcp 65001 >nul
 cd /d "%~dp0\.."
 
-title OpenVoice Desktop - 一键安装与启动
+title WakeVoice - 一键安装与启动
 
 echo ============================================================
-echo   OpenVoice Desktop 中文语音助手
+echo   WakeVoice 中文语音助手
 echo   一键自动配置：检测 Python - 安装依赖 - 下载模型 - 启动
 echo ============================================================
 echo.

@@ -1,5 +1,5 @@
-REPO_A (openvoice-desktop):
-OpenVoice Desktop - hands-free Chinese voice assistant for Windows. Say a wake word, speak a command, done. No cloud account, works offline.
+REPO_A (wakevoice):
+WakeVoice - hands-free Chinese voice assistant for Windows. Say a wake word, speak a command, done. No cloud account, works offline.
 
-REPO_B (openvoice-desktop-portable):
-OpenVoice Desktop Portable - double-click EXE Chinese voice assistant, no Python needed. Wake word + spoken commands control your PC hands-free.
+REPO_B (wakevoice-portable):
+WakeVoice Portable - double-click EXE Chinese voice assistant, no Python needed. Wake word + spoken commands control your PC hands-free.

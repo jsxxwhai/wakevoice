@@ -49,10 +49,10 @@ def test_mcp_bridge_non_json_args_fallback():
     mcp = FakeMCPManager()
     reg = _reg(mcp)
     skill = reg.find("mcp_call")
-    result = skill.run({"server": "fs", "tool": "openvoice", "args": "hello"}, None)
+    result = skill.run({"server": "fs", "tool": "wakevoice", "args": "hello"}, None)
     assert result
     # non-JSON args fall back to {"input": "hello"}
-    assert mcp.calls == [("fs", "openvoice", {"input": "hello"})]
+    assert mcp.calls == [("fs", "wakevoice", {"input": "hello"})]
 
 
 def test_mcp_bridge_error_returns_friendly():

@@ -29,7 +29,7 @@ def load_plugin_dir(registry, directory: str | Path) -> int:
         if py.name.startswith("_"):
             continue
         try:
-            spec = importlib.util.spec_from_file_location(f"openvoice_plugin_{py.stem}", py)
+            spec = importlib.util.spec_from_file_location(f"wakevoice_plugin_{py.stem}", py)
             if spec is None or spec.loader is None:
                 continue
             mod = importlib.util.module_from_spec(spec)

@@ -17,7 +17,7 @@ def main(argv=None) -> int:
             except Exception:
                 pass
 
-    parser = argparse.ArgumentParser(prog="openvoice", description="OpenVoice Desktop voice assistant")
+    parser = argparse.ArgumentParser(prog="wakevoice", description="WakeVoice voice assistant")
     parser.add_argument("-c", "--config", help="path to config.yaml")
     parser.add_argument("--once", action="store_true", help="single push-to-talk exchange")
     parser.add_argument("--wake", action="store_true", help="continuous wake-word loop")

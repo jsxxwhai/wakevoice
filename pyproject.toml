@@ -3,13 +3,13 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "openvoice-desktop"
+name = "wakevoice"
 version = "0.2.0"
 description = "A highly customizable, low-memory, multi-agent desktop voice assistant with pluggable wake word, emotional TTS, and MCP support."
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
-authors = [{ name = "OpenVoice Desktop Contributors" }]
+authors = [{ name = "WakeVoice Contributors" }]
 keywords = ["voice-assistant", "wake-word", "tts", "mcp", "multi-agent", "automation", "speech"]
 classifiers = [
     "Development Status :: 3 - Alpha",
@@ -42,17 +42,17 @@ llm = ["openai>=1.0"]
 dev = ["pytest>=7.0", "ruff>=0.16.5,<0.17"]
 
 [project.scripts]
-openvoice = "assistant.cli:main"
-openvoice-desktop = "assistant.cli:main"
+wakevoice = "assistant.cli:main"
+wakevoice-desktop = "assistant.cli:main"
 
 # TODO: replace these placeholders with the real repository before the first
 # public release. Keeps PyPI/GitHub metadata consistent without pointing at a
 # non-existent repository.
 [project.urls]
-Homepage = "https://github.com/jsxxwhai/openvoice-desktop"
-Documentation = "https://github.com/jsxxwhai/openvoice-desktop#readme"
-Issues = "https://github.com/jsxxwhai/openvoice-desktop/issues"
-Source = "https://github.com/jsxxwhai/openvoice-desktop"
+Homepage = "https://github.com/jsxxwhai/wakevoice"
+Documentation = "https://github.com/jsxxwhai/wakevoice#readme"
+Issues = "https://github.com/jsxxwhai/wakevoice/issues"
+Source = "https://github.com/jsxxwhai/wakevoice"
 
 [tool.setuptools]
 package-dir = { "" = "src" }

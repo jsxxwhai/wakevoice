@@ -1,8 +1,8 @@
-# OpenVoice Desktop 默认配置
+# WakeVoice 默认配置
 # 复制本文件为 config.yaml 并按需修改
 
 app:
-  name: OpenVoice   # 助手名字（唤醒后自称）
+  name: WakeVoice   # 助手名字（唤醒后自称）
   log_level: INFO   # DEBUG / INFO / WARNING / ERROR
 
 wake:

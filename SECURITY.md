@@ -17,7 +17,7 @@ within a reasonable time and work with you to resolve the issue responsibly.
 
 ## Security Notes
 
-- OpenVoice Desktop processes local audio and can execute skills that control the
+- WakeVoice processes local audio and can execute skills that control the
   desktop (open apps, simulate keyboard/mouse, read the screen). Only enable
   skills you trust and review the skills you install.
 - Never commit API keys, access tokens, or personal memory files. Use

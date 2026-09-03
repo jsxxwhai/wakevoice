@@ -1,4 +1,4 @@
-# OpenVoice Desktop 架构设计
+# WakeVoice 架构设计
 
 ## 设计目标
 

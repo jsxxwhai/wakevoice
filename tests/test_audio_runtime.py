@@ -39,8 +39,8 @@ def test_cleanup_removes_stale_wavs(tmp_path):
     from assistant import audio as A
 
     # Create one fresh + one stale scratch file in a temp runtime dir.
-    old = tmp_path / "openvoice_tts_old.wav"
-    new = tmp_path / "openvoice_tts_new.wav"
+    old = tmp_path / "wakevoice_tts_old.wav"
+    new = tmp_path / "wakevoice_tts_new.wav"
     old.write_bytes(b"x" * 10)
     new.write_bytes(b"x" * 10)
     # force old mtime far in the past
@@ -64,9 +64,9 @@ def test_cleanup_enforces_total_size_cap(tmp_path):
     old_cap = A._MAX_TEMP_BYTES
     A._MAX_TEMP_BYTES = 20
     try:
-        f1 = tmp_path / "openvoice_tts_1.wav"
-        f2 = tmp_path / "openvoice_tts_2.wav"
-        f3 = tmp_path / "openvoice_tts_3.wav"
+        f1 = tmp_path / "wakevoice_tts_1.wav"
+        f2 = tmp_path / "wakevoice_tts_2.wav"
+        f3 = tmp_path / "wakevoice_tts_3.wav"
         f1.write_bytes(b"a" * 10)
         f2.write_bytes(b"b" * 10)
         f3.write_bytes(b"c" * 10)
@@ -79,7 +79,7 @@ def test_cleanup_enforces_total_size_cap(tmp_path):
         A._temp_dir = lambda: tmp_path
         A._cleanup_runtime(max_age_seconds=0.0)
         # total after cleanup must fit under the cap
-        remaining = [f for f in tmp_path.glob("openvoice_tts_*.wav")]
+        remaining = [f for f in tmp_path.glob("wakevoice_tts_*.wav")]
         total = sum(f.stat().st_size for f in remaining)
         assert total <= 20
     finally:
