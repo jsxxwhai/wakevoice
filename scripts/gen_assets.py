@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Regenerate the README demo screenshot and social preview card.
 
 Run from the repository root:
@@ -12,14 +11,12 @@ original and license-clean. Requires Pillow.
 from __future__ import annotations
 
 import pathlib
-import sys
 
 from PIL import Image, ImageDraw, ImageFont
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 
 def _render_demo():
-    from PIL import Image, ImageDraw, ImageFont
 
     W,H = 1040, 640
     bg = (17, 24, 39)        # slate-900
@@ -32,9 +29,11 @@ def _render_demo():
     yellow = (251,191,36)
 
     def font(sz, bold=False):
-        p = 'C:/Windows/Fonts/msyhbd.ttc' if bold else 'C:/Windows/Fonts/msyh.ttc'
-        try: return ImageFont.truetype(p, sz)
-        except Exception: return ImageFont.load_default()
+        path = 'C:/Windows/Fonts/msyhbd.ttc' if bold else 'C:/Windows/Fonts/msyh.ttc'
+        try:
+            return ImageFont.truetype(path, sz)
+        except Exception:
+            return ImageFont.load_default()
 
     img = Image.new('RGB', (W,H), bg)
     d = ImageDraw.Draw(img)
@@ -46,7 +45,7 @@ def _render_demo():
     d.text((46, 30), 'WakeVoice', font=font(28, True), fill=white)
     d.text((46, 72), '唤醒词模式 · 本地运行 · 免云账号', font=font(18), fill=grey)
     # dots
-    for i,(dx,col) in enumerate([(W-140, (248,113,113)),(W-108,(251,191,36)),(W-76,(52,211,153))]):
+    for _i, (dx, col) in enumerate([(W - 140, (248, 113, 113)), (W - 108, (251, 191, 36)), (W - 76, (52, 211, 153))]):
         d.ellipse([dx,36,dx+18,54], fill=col)
 
     # left hint panel
@@ -61,28 +60,29 @@ def _render_demo():
         ('●  数据：不出电脑', green),
     ]
     y=200
-    for t,c in items:
-        if not t: y+=14; continue
-        d.text((76,y), t, font=font(19), fill=c)
-        y+=38
+    for t, c in items:
+        if not t:
+            y += 14
+            continue
+        d.text((76, y), t, font=font(19), fill=c)
+        y += 38
     d.text((76, y+6), '按 Esc 停止当前任务', font=font(17), fill=grey)
 
     # chat bubbles right
     d.text((404,150), '对话演示', font=font(22,True), fill=white)
-    bubbles = [
-        ('你', '你好伙伴', (59,130,246), (30,58,138), 420),
-        ('它', '我在。有什么吩咐？', accent, (8,47,73), 520),
-        ('你', '打开记事本', (59,130,246), (30,58,138), 620),
-        ('它', '好的，已经帮你打开记事本了。', accent, (8,47,73), 720),
-    ]
     def wrap(text, fnt, maxw):
-        if d.textlength(text, font=fnt) <= maxw: return [text]
-        out=[]; cur=''
+        if d.textlength(text, font=fnt) <= maxw:
+            return [text]
+        out = []
+        cur = ''
         for ch in text:
-            if d.textlength(cur+ch, font=fnt) > maxw:
-                out.append(cur); cur=ch
-            else: cur+=ch
-        if cur: out.append(cur)
+            if d.textlength(cur + ch, font=fnt) > maxw:
+                out.append(cur)
+                cur = ch
+            else:
+                cur += ch
+        if cur:
+            out.append(cur)
         return out
 
     def bubble(name, text, border, fill, y):
@@ -112,13 +112,14 @@ def _render_demo():
 
 
 def _render_og():
-    from PIL import Image, ImageDraw, ImageFont
 
     W,H = 1280,640
     def font(sz, bold=False):
-        p='C:/Windows/Fonts/msyhbd.ttc' if bold else 'C:/Windows/Fonts/msyh.ttc'
-        try: return ImageFont.truetype(p,sz)
-        except Exception: return ImageFont.load_default()
+        path = 'C:/Windows/Fonts/msyhbd.ttc' if bold else 'C:/Windows/Fonts/msyh.ttc'
+        try:
+            return ImageFont.truetype(path, sz)
+        except Exception:
+            return ImageFont.load_default()
 
     # gradient bg deep slate -> darker
     img=Image.new('RGB',(W,H),(10,18,30))
@@ -154,7 +155,7 @@ def _render_og():
     d.rounded_rectangle([mx-14,my+60,mx+14,my+140],radius=8, fill=(148,163,184))
     d.rounded_rectangle([mx-70,my+130,mx+70,my+160],radius=16, fill=(148,163,184))
     # wave arcs (right)
-    for i,rad in enumerate([70,110,150]):
+    for rad in (70, 110, 150):
         x0=mx+45
         d.arc([x0,my-40-rad,x0+2*rad,my-40+rad], start=-70,end=70, fill=(34,211,238), width=10)
 
