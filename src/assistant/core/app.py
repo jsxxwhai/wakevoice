@@ -176,7 +176,7 @@ class Assistant:
         if self.config.get("llm.base_url"):
             return True
         import os
-        key_env = self.config.get("llm.api_key_env", "OPENAI_API_KEY")
+        key_env = self.config.get("llm.api_key_env", "LLM_API_KEY")
         return bool(os.environ.get(key_env))
 
     @property
@@ -186,7 +186,7 @@ class Assistant:
         if self._llm is None:
             self._llm = LLMClient(
                 base_url=self.config.get("llm.base_url"),
-                api_key_env=self.config.get("llm.api_key_env", "OPENAI_API_KEY"),
+                api_key_env=self.config.get("llm.api_key_env", "LLM_API_KEY"),
                 model=self.config.get("llm.model", "gpt-4o-mini"),
                 temperature=self.config.get("llm.temperature", 0.7),
                 timeout=self.config.get("llm.timeout", 20.0),

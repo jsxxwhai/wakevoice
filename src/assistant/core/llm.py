@@ -17,7 +17,7 @@ EMOTIONS = ["neutral", "happy", "sad", "angry", "fear", "excited", "gentle", "ca
 class LLMClient:
     """Thin wrapper over the optional LLM SDK; lazy import to keep memory low."""
 
-    def __init__(self, base_url: str | None = None, api_key_env: str = "OPENAI_API_KEY",
+    def __init__(self, base_url: str | None = None, api_key_env: str = "LLM_API_KEY",
                  model: str = "gpt-4o-mini", temperature: float = 0.7,
                  timeout: float = 20.0):
         self.base_url = base_url

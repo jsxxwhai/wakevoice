@@ -21,6 +21,6 @@ within a reasonable time and work with you to resolve the issue responsibly.
   desktop (open apps, simulate keyboard/mouse, read the screen). Only enable
   skills you trust and review the skills you install.
 - Never commit API keys, access tokens, or personal memory files. Use
-  environment variables (e.g. `OPENAI_API_KEY`) and the `.gitignore` rules.
+  environment variables (e.g. `LLM_API_KEY`) and the `.gitignore` rules.
 - The extension (Model Context Protocol) client launches arbitrary commands
   configured in `config.yaml`. Only point it at servers you trust.

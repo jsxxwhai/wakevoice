@@ -16,7 +16,7 @@ def _assistant():
 
 def test_llm_disabled_without_key(monkeypatch):
     """With no base_url and no API key, llm must be None (instant local fallback)."""
-    monkeypatch.delenv("OPENAI_API_KEY", raising=False)
+    monkeypatch.delenv("LLM_API_KEY", raising=False)
     a = _assistant()
     a.config.set("llm.base_url", None)
     a.config.set("llm.enabled", True)
@@ -25,7 +25,7 @@ def test_llm_disabled_without_key(monkeypatch):
 
 def test_llm_enabled_with_base_url(monkeypatch):
     """A custom base_url (Ollama/vLLM etc.) enables LLM without an API key."""
-    monkeypatch.delenv("OPENAI_API_KEY", raising=False)
+    monkeypatch.delenv("LLM_API_KEY", raising=False)
     a = _assistant()
     a.config.set("llm.base_url", "http://localhost:11434/v1")
     a.config.set("llm.enabled", True)
@@ -34,7 +34,7 @@ def test_llm_enabled_with_base_url(monkeypatch):
 
 def test_llm_enabled_with_api_key(monkeypatch):
     """An API key env var enables LLM."""
-    monkeypatch.setenv("OPENAI_API_KEY", "sk-test")
+    monkeypatch.setenv("LLM_API_KEY", "sk-test")
     a = _assistant()
     a.config.set("llm.base_url", None)
     a.config.set("llm.enabled", True)
@@ -43,7 +43,7 @@ def test_llm_enabled_with_api_key(monkeypatch):
 
 def test_llm_explicitly_disabled(monkeypatch):
     """llm.enabled=false forces None even when a key is present."""
-    monkeypatch.setenv("OPENAI_API_KEY", "sk-test")
+    monkeypatch.setenv("LLM_API_KEY", "sk-test")
     a = _assistant()
     a.config.set("llm.enabled", False)
     assert a.llm is None

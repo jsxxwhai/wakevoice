@@ -41,7 +41,7 @@ class Config:
                     "pitch": "+0Hz", "volume": "+0%", "style": "general",
                     "emotion_enabled": True, "pyttsx3_rate": 175,
                     "pyttsx3_volume": 0.9},
-            "llm": {"base_url": None, "api_key_env": "OPENAI_API_KEY",
+            "llm": {"base_url": None, "api_key_env": "LLM_API_KEY",
                     "model": "gpt-4o-mini", "temperature": 0.7,
                     "timeout": 20.0, "enabled": True},
             "skills": {"enabled": True, "disabled": [], "plugin_dir": "skills"},
