@@ -1,29 +1,46 @@
-# OpenVoice Desktop
-
-> 一个可定制、低内存、多智能体的桌面语音助手。
-> 自定义唤醒词 · 情感语音合成 · 控制电脑 · 读取屏幕 · 插件扩展 · 多 Agent。
->
-> A customizable, low-memory, multi-agent desktop voice assistant.
-> Custom wake word · emotional speech synthesis · control your PC · read your
-> screen · pluggable skills · multi-agent orchestration.
-
 <div align="center">
 
-[![Python](https://img.shields.io/badge/Python-3.10%2B-blue)](#)
+# 🎙️ OpenVoice Desktop
+
+**对着电脑说话，它就帮你干活。** Hands-free Chinese voice assistant for your desktop.
+
+> 说一句“你好伙伴”，它答应一声；再用嘴说命令，它照做 —— 全程不用碰键盘。
+> Wake word → spoken command → done. Runs locally, works offline, no cloud account.
+
+[![Release](https://img.shields.io/github/v/release/jsxxwhai/openvoice-desktop?color=blue&label=Latest%20Release)](https://github.com/jsxxwhai/openvoice-desktop/releases)
 [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+[![Stars](https://img.shields.io/github/stars/jsxxwhai/openvoice-desktop?style=social)](https://github.com/jsxxwhai/openvoice-desktop)
+
+**Free · Open source · No cloud · No data leaves your PC**
+
+If this project helps you, **give it a Star ⭐** — it motivates us to keep building.
 
 </div>
-
-If you find this project useful, **give it a Star** ⭐ and share it with
-friends. Found a bug or want a feature? Open an
-[issue](https://github.com/jsxxwhai/openvoice-desktop/issues).
-
 
 > [!IMPORTANT]
 > This is the public-facing README for the GitHub repository. It deliberately
 > avoids third-party product names, logos, or trademarked assistant personas so
 > the project can be published without endorsement or affiliation concerns.
+
+## 🚀 What it feels like
+
+```
+你：你好伙伴
+它：我在。有什么吩咐？
+你：打开记事本
+   （停顿 1.5 秒）
+它：好的，已经打开记事本了。
+你：现在几点了？
+它：现在是下午 3 点 24 分。
+你：拜拜
+它：再见，有需要随时叫我。
+```
+
+- 🔉 说“你好伙伴”唤醒，它回应“我在”
+- 🗣️ 用嘴直接说命令，**停顿 1.5 秒自动执行**（不用按键）
+- ⏹ 想打断/停止，随时按 `Esc`
+- 🌐 全程本地处理，无云账号、无订阅、数据不出电脑
 
 ## Download
 
