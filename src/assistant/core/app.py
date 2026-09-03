@@ -16,6 +16,7 @@ from ..skills import control as control_skill
 from ..skills import mcp_bridge
 from ..skills import plugins as plugin_loader
 from ..skills import system as system_skill
+from ..skills import timeinfo as time_skill
 from ..skills.base import SkillRegistry
 from .config import Config
 from .llm import LLMClient
@@ -217,6 +218,8 @@ class Assistant:
         control_skill.register_control_skills(self.skills)
         system_skill.register_system_skills(self.skills)
         self.skills.register(mcp_bridge.make_mcp_skill(self.extension))
+        # offline time/date (always available, no LLM key needed)
+        time_skill.register_time_skills(self.skills)
         # screen-reading skill
         self.skills.register_func(
             name="read_screen", description="截图并识别屏幕上的文字",
