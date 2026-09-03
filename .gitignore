@@ -26,6 +26,7 @@ Thumbs.db
 *.swp
 
 # Local config / user data
+config/config.yaml
 config/local.yaml
 笔记.txt
 *.log
