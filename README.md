@@ -26,6 +26,8 @@
 
 </div>
 
+<img src="assets/og-card.png" alt="OpenVoice Desktop 社交卡片" width="100%"/>
+
 ## ⭐ 为什么值得你点 Star
 
 - 🆓 **完全免费、完全开源**（MIT）：不锁功能、不收费、可商用。
