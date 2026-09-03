@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "wakevoice"
-version = "0.2.0"
+version = "0.2.1"
 description = "A highly customizable, low-memory, multi-agent desktop voice assistant with pluggable wake word, emotional TTS, and MCP support."
 readme = "README.md"
 requires-python = ">=3.10"

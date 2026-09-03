@@ -11,6 +11,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 (no unreleased changes yet)
 
+## [0.2.1] - 2026-09-03
+
+### Changed
+- Rebranded public distribution artifacts to WakeVoice: source/wheel packages
+  are now `wakevoice-*` and the portable EXE bundle is `WakeVoiceDesktop`.
+- Published from the renamed `jsxxwhai/wakevoice` and
+  `jsxxwhai/wakevoice-portable` repositories.
+
 ## [0.2.0] - 2026-09-03
 
 ### Added
