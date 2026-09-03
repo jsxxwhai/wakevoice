@@ -10,6 +10,7 @@
 
 [![Release](https://img.shields.io/github/v/release/jsxxwhai/openvoice-desktop?color=blue&label=Latest%20Release)](https://github.com/jsxxwhai/openvoice-desktop/releases)
 [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
+[![CI](https://github.com/jsxxwhai/openvoice-desktop/actions/workflows/ci.yml/badge.svg)](https://github.com/jsxxwhai/openvoice-desktop/actions/workflows/ci.yml)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 [![Stars](https://img.shields.io/github/stars/jsxxwhai/openvoice-desktop?style=social&label=Star)](https://github.com/jsxxwhai/openvoice-desktop)
 
