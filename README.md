@@ -57,7 +57,7 @@
 - ⏹ 想打断/停止，随时按 `Esc`（可在配置里关闭）
 - 🌐 全程本地处理，无云账号、无订阅、数据不出电脑
 
-![WakeVoice 对话演示](assets/demo.png)
+![WakeVoice 对话演示（动画）](assets/demo.gif)
 
 ---
 ## Download
