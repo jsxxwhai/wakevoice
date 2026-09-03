@@ -8,6 +8,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+
+(no unreleased changes yet)
+
+## [0.2.0] - 2026-09-03
+
+### Added
 - Hands-free voice mode (default): speak, pause, and the assistant acts — no
   push-to-talk key required. Push-to-talk remains available via
   `voice.mode: push_to_talk`.
