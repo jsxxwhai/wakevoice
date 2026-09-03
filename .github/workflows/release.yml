@@ -148,3 +148,34 @@ jobs:
           fi
           echo "=== Release assets ==="
           gh release view "$TAG" --json assets --jq '.assets[].name'
+
+  mirror-portable:
+    needs: [publish, build-portable]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: portable-zip
+          path: portable-zip
+      - name: Publish matching portable release
+        env:
+          GH_TOKEN: ${{ secrets.PORTABLE_REPO_TOKEN }}
+          REPO: jsxxwhai/wakevoice-portable
+        run: |
+          set -euo pipefail
+          TAG="${{ needs.publish.outputs.tag }}"
+          TITLE="${TAG#v}"
+          ZIP=$(ls portable-zip/*portable*.zip | head -n1)
+          echo "Portable zip: ${ZIP}"
+          echo "Target release: ${REPO} ${TAG}"
+          if gh release view "$TAG" --repo "$REPO" >/dev/null 2>&1; then
+            echo "Portable release ${TAG} exists; uploading fresh zip..."
+            gh release upload "$TAG" "$ZIP" --repo "$REPO" --clobber
+          else
+            echo "Creating portable release ${TAG} ..."
+            gh release create "$TAG" "$ZIP" --repo "$REPO" \
+              --title "$TITLE" \
+              --notes "WakeVoice ${TITLE} portable EXE bundle - double-click WakeVoiceDesktop.exe, no Python needed. Built and uploaded automatically from the source repository." --latest
+          fi
+          echo "=== Portable release assets ==="
+          gh release view "$TAG" --repo "$REPO" --json assets --jq '.assets[].name'
