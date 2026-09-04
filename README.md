@@ -23,6 +23,7 @@
 
 </div>
 > [!NOTE]
+> **WakeVoice** is an original, independently developed desktop voice assistant. It contains and imitates no third-party brand or copyrighted content and is open source under the MIT license.
 > 这个项目是**原创独立开发的桌面语音助手**，不包含、不模仿任何第三方品牌或受版权保护的内容。MIT 协议开源，可自由使用、修改与再分发。
 
 
@@ -45,8 +46,6 @@
 
 > ⭐ **If WakeVoice helps you, please star this repository** — your support is what keeps the project alive and improving.
 
-> [!NOTE]
-> 这个项目是**原创独立开发的桌面语音助手**，不包含、不模仿任何第三方品牌或受版权保护的内容。MIT 协议开源，可自由使用、修改与再分发。
 
 <details>
 <summary><b>中文版 · 为什么值得点 Star</b></summary>
