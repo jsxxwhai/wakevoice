@@ -45,9 +45,6 @@ dev = ["pytest>=7.0", "ruff>=0.16.5,<0.17"]
 wakevoice = "assistant.cli:main"
 wakevoice-desktop = "assistant.cli:main"
 
-# TODO: replace these placeholders with the real repository before the first
-# public release. Keeps PyPI/GitHub metadata consistent without pointing at a
-# non-existent repository.
 [project.urls]
 Homepage = "https://github.com/jsxxwhai/wakevoice"
 Documentation = "https://github.com/jsxxwhai/wakevoice#readme"
