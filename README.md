@@ -238,15 +238,25 @@ src/assistant/
 
 ## Roadmap（路线图）
 
-- [x] Custom wake word + multiple backends
-- [x] Emotional speech synthesis
-- [x] Multi-agent + LLM tool calling
-- [x] Custom extension client
-- [x] Plugin auto-discovery
+**Done — core loop works end to end:**
+
+- [x] Custom wake word + multiple wake backends
+- [x] Emotional speech synthesis (online neural / offline fallback)
+- [x] Hands-free pause-to-act & push-to-talk voice modes
+- [x] Multi-agent + LLM tool calling (any Chat Completions endpoint)
+- [x] Plugin auto-discovery (drop-in `.py` skills)
 - [x] Safety railings (opt-in screen control, project-local temp files)
-- [ ] GUI configuration editor
-- [ ] Wake-word training toolkit
-- [ ] Broader platform support (macOS/Linux polish)
+- [x] Fully offline mode (no cloud, no keys required)
+
+**Planned — high-demand, community-driven:**
+
+- [ ] GUI settings editor (visual config, no YAML editing)
+- [ ] More STT backends + multi-language models (e.g. faster-whisper, EN support)
+- [ ] Built-in wake-word recorder / trainer
+- [ ] Quick-start wizard for first-run setup
+- [ ] Broader platform support (macOS / Linux polish)
+
+> Have a use case we missed? Open an issue — the roadmap follows what users actually need.
 
 ## Documentation（文档）
 
