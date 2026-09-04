@@ -32,9 +32,24 @@
 
 </div>
 
-<img src="assets/og-card.png" alt="WakeVoice 社交卡片" width="100%"/>
 
-## ⭐ 为什么值得你点 Star
+<img src="assets/og-card.png" alt="WakeVoice social card" width="100%"/>
+
+## Why it deserves a ⭐
+
+- 🆓 **Free & open source (MIT)** — nothing is locked, nothing to pay, commercial use is welcome.
+- 🔒 **100% local & private** — wake-word, speech-to-text and basic replies all run on your PC; works fully offline; your voice never leaves the machine.
+- 🎙️ **Truly hands-free** — set any custom wake word, then just talk; it acts automatically after a short pause. No keyboard needed.
+- ⚡ **Zero-setup portable EXE** — double-click to run; no Python install, no command line.
+- 🧩 **Extend with one file** — drop a `.py` file into `skills/` and you have a new capability.
+
+> ⭐ **If WakeVoice helps you, please star this repository** — your support is what keeps the project alive and improving.
+
+> [!NOTE]
+> 这个项目是**原创独立开发的桌面语音助手**，不包含、不模仿任何第三方品牌或受版权保护的内容。MIT 协议开源，可自由使用、修改与再分发。
+
+<details>
+<summary><b>中文版 · 为什么值得点 Star</b></summary>
 
 - 🆓 **完全免费、完全开源**（MIT）：不锁功能、不收费、可商用。
 - 🔒 **本地优先**：唤醒、识别、基础对话全部在本地跑，断网也能用，隐私不出门。
@@ -42,28 +57,30 @@
 - ⚡ **即开即用**：便携 EXE 版免装 Python，双击就能用。
 - 🧩 **能自己扩展**：丢一个 `.py` 文件进 `skills/` 就多一个技能。
 
-> ⭐ **如果它对你有帮助，请给仓库点一个 Star** —— 你的支持是作者持续维护的最大动力。
+</details>
 
-## 🚀 用起来是什么感觉
+## What it feels like
 
+A short real session (wake word default “你好伙伴”):
+
+```text
+You: 你好伙伴                       → “wake word”
+Bot: 我在。有什么吩咐？              → “I'm here. What can I do for you?”
+You: 打开记事本                      → “open a text editor”
+     (pause ~1.5 s — no key press)
+Bot: 好的，已经打开记事本了。         → “Done, the editor is open.”
+You: 现在几点了？                    → “what time is it?”
+Bot: 现在是下午 3 点 24 分。          → “It's 3:24 PM.”
+You: 拜拜                           → “bye”
+Bot: 再见，有需要随时叫我。           → “Goodbye — call me anytime.”
 ```
-你：你好伙伴
-它：我在。有什么吩咐？
-你：打开记事本
-   （停顿 1.5 秒）
-它：好的，已经打开记事本了。
-你：现在几点了？
-它：现在是下午 3 点 24 分。
-你：拜拜
-它：再见，有需要随时叫我。
-```
 
-- 🔉 说“你好伙伴”唤醒，它回应“我在”
-- 🗣️ 用嘴直接说命令，**停顿 1.5 秒自动执行**（不用按键）
-- ⏹ 想打断/停止，随时按 `Esc`（可在配置里关闭）
-- 🌐 全程本地处理，无云账号、无订阅、数据不出电脑
+- 🔉 Say the wake word (default “你好伙伴”) and it answers “我在”
+- 🗣️ Then speak a command out loud — it **acts automatically after a ~1.5 s pause**
+- ⏹ Press `Esc` at any time to interrupt or abort (configurable)
+- 🌐 Fully local: no cloud account, no subscription, data never leaves your PC
 
-![WakeVoice 对话演示（动画）](assets/demo.gif)
+![WakeVoice demo (animated)](assets/demo.gif)
 
 ---
 ## Download（下载安装）
